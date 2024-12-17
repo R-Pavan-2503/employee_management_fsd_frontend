@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 const EmployeeForm = () => {
+    const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
     const [formData, setFormData] = useState({
         name: '',
         employeeId: '',
@@ -43,7 +45,7 @@ const EmployeeForm = () => {
         setSubmitSuccess(false);
 
         try {
-            const response = await axios.post('http://localhost:5000/api/employees/add', formData);
+            const response = await axios.post(`${API_BASE_URL}/api/employees/add`, formData);
             console.log('Employee added:', response.data);
             setSubmitSuccess(true);
             setTimeout(() => {
